@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Kontrakan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">Daftar Kontrakan</h2>
+
+        <!-- Loop through kontrakan data -->
+        {% for kontrakan in kontrakans %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ kontrakan.alamat }}</h5>
+                    <p class="card-text"><strong>Fasilitas:</strong> {{ kontrakan.fasilitas or 'Tidak ada fasilitas yang tersedia' }}</p>
+                    <p class="card-text"><strong>Harga per bulan:</strong> Rp {{ '{:,.2f}'.format(kontrakan.harga_per_bulan) }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ kontrakan.status }}</p>
+                    <a href="{{ url_for('edit_kontrakan', id=kontrakan.id_kontrakan) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ url_for('delete_kontrakan', id=kontrakan.id_kontrakan) }}" class="btn btn-danger btn-sm">Hapus</a>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="text-center mt-4">
+            <a href="{{ url_for('tambah_kontrakan') }}" class="btn btn-success">Tambah Kontrakan</a>
+            <a href="{{ url_for('index') }}" class="btn btn-success">Kembali</a>
+        </div>
+    </div>
+
+    <!-- Optional Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

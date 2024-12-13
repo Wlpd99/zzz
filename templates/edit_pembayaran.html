@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Pembayaran</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4">Edit Pembayaran</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="id_transaksi" class="form-label">Transaksi</label>
+                <select class="form-control" id="id_transaksi" name="id_transaksi" required>
+                    {% for transaksi in transaksi_list %}
+                    <option value="{{ transaksi.id_transaksi }}" {% if transaksi.id_transaksi == pembayaran.id_transaksi %}selected{% endif %}>
+                        {{ transaksi.kontrakan.alamat }} - {{ transaksi.penyewa.nama }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="tanggal_bayar" class="form-label">Tanggal Bayar</label>
+                <input type="date" class="form-control" id="tanggal_bayar" name="tanggal_bayar" value="{{ pembayaran.tanggal_bayar }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="jumlah_bayar" class="form-label">Jumlah Bayar</label>
+                <input type="number" class="form-control" id="jumlah_bayar" name="jumlah_bayar" value="{{ pembayaran.jumlah_bayar }}" step="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        </form>
+    </div>
+</body>
+</html>

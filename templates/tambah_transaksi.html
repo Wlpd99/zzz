@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tambah Transaksi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4">Tambah Transaksi</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="id_kontrakan" class="form-label">Kontrakan</label>
+                <select class="form-control" id="id_kontrakan" name="id_kontrakan" required>
+                    {% for kontrakan in kontrakans %}
+                    <option value="{{ kontrakan.id_kontrakan }}">{{ kontrakan.alamat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="id_penyewa" class="form-label">Penyewa</label>
+                <select class="form-control" id="id_penyewa" name="id_penyewa" required>
+                    {% for penyewa in penyewas %}
+                    <option value="{{ penyewa.id_penyewa }}">{{ penyewa.nama }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required>
+            </div>
+            <div class="mb-3">
+                <label for="tanggal_selesai" class="form-label">Tanggal Selesai</label>
+                <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
+            </div>
+            <div class="mb-3">
+                <label for="total_pembayaran" class="form-label">Total Pembayaran</label>
+                <input type="number" class="form-control" id="total_pembayaran" name="total_pembayaran" step="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+    </div>
+</body>
+</html>
